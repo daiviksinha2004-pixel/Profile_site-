@@ -31,7 +31,9 @@ export default function Home() {
   const [askPrefill, setAskPrefill] = useState<string | undefined>(undefined);
 
   function askAI(q?: string) {
-    if (q) setAskPrefill(q);
+    // Some callers wire this directly to onClick, which would pass a click event;
+    // only treat an actual string as a prefill question.
+    if (typeof q === "string" && q.trim()) setAskPrefill(q);
     setChatOpen(true);
   }
 

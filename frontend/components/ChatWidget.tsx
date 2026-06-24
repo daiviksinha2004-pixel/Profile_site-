@@ -138,7 +138,7 @@ export function ChatWidget({
   }, [messages, streaming, askedSet]);
 
   async function send(text: string) {
-    const question = text.trim();
+    const question = String(text ?? "").trim();
     if (!question || streaming) return;
     if (listening) { recognitionRef.current?.stop(); setListening(false); }
     const history = messages;
