@@ -1,0 +1,39 @@
+# Render Blueprint for the FastAPI RAG backend.
+# In Render: New + → Blueprint → connect this repo. It reads this file automatically.
+# Secrets are marked `sync: false` — Render will prompt you to enter them in the dashboard.
+services:
+  - type: web
+    name: portfolio-backend
+    runtime: docker
+    rootDir: backend
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      # --- Chat LLM provider fallback chain (JSON array). At least one of these or GROQ_API_KEY. ---
+      - key: AI_PROVIDERS
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: CHAT_MODEL
+        value: llama-3.1-8b-instant
+      # --- Embeddings (Gemini OpenAI-compatible endpoint by default) ---
+      - key: AI_API_KEY
+        sync: false
+      - key: AI_BASE_URL
+        value: https://generativelanguage.googleapis.com/v1beta/openai/
+      - key: EMBEDDING_MODEL
+        value: gemini-embedding-001
+      # --- Vector store / RAG ---
+      - key: VECTOR_DB
+        value: chroma
+      - key: COLLECTION_NAME
+        value: portfolio
+      - key: TOP_K
+        value: "6"
+      - key: OWNER_NAME
+        value: Daivik Sinha
+      # --- CORS: set to your Vercel frontend URL(s), comma-separated. Update after the frontend deploys. ---
+      - key: CORS_ORIGINS
+        sync: false

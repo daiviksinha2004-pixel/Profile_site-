@@ -1,0 +1,31 @@
+# ---- Python / backend ----
+backend/.venv/
+backend/venv/
+backend/install/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+backend/.env
+backend/.chroma/
+backend/data/index/
+
+# ---- Node / frontend ----
+node_modules/
+frontend/.next/
+frontend/out/
+frontend/.env.local
+*.log
+
+# ---- Secrets ----
+.env
+.env.*
+!.env.example
+!*.env.example
+
+# ---- OS / editor ----
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json

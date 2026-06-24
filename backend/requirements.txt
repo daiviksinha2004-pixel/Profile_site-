@@ -1,0 +1,16 @@
+# --- Web framework ---
+fastapi>=0.115,<1.0
+uvicorn[standard]>=0.32,<1.0
+
+# --- Config / validation ---
+pydantic>=2.9,<3.0
+pydantic-settings>=2.6,<3.0
+python-dotenv>=1.0,<2.0
+
+# --- AI / RAG ---
+openai>=1.40,<2.0          # chat + embeddings via OpenAI-compatible providers (Groq/Gemini/OpenRouter)
+chromadb>=0.5              # local vector store (swap for qdrant-client/pinecone in prod)
+
+# --- Optional production vector stores (uncomment as needed) ---
+# qdrant-client>=1.12
+# pinecone-client>=5.0
