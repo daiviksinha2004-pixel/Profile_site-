@@ -46,7 +46,9 @@ class Settings(BaseSettings):
 
     @property
     def cors_origin_list(self) -> list[str]:
-        return [o.strip() for o in self.cors_origins.split(",") if o.strip()]
+        # Strip whitespace and any trailing slash — browsers send the Origin header
+        # without one, so "https://site.app/" would otherwise never match.
+        return [o.strip().rstrip("/") for o in self.cors_origins.split(",") if o.strip()]
 
     @property
     def chat_providers(self) -> list[dict]:
